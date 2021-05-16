@@ -2,6 +2,16 @@ var x1, x2, x3, x4, x5, x6;
 x1 = x2 = x3 = x4 = x5 = x6 = false;
 var submitButton = document.getElementById("submitButton");
 
+function disableButton(button) {
+    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
+    if(checkAll){
+        button.disabled = false;
+    }
+    else if(!checkAll){
+        button.disabled = true;
+    }
+}
+
 var usernamebox = document.getElementById("usernamebox");
 usernamebox.addEventListener("input", ()=> {
     let username = new RegExp("^(?=.{3,20}$)(?![.])(?!.*[.]{2})[a-zA-Z0-9._]+(?<![.])$");
@@ -18,14 +28,7 @@ usernamebox.addEventListener("input", ()=> {
         document.getElementById("usernameWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
         x6=true;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
-
+    disableButton(submitButton);
 });
 
 var namebox = document.getElementById("fullnamebox");
@@ -44,14 +47,7 @@ namebox.addEventListener("input", ()=> {
         document.getElementById("nameWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
         x1=true;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
-
+    disableButton(submitButton);
 });
 
 var agebox = document.getElementById("agebox");
@@ -69,13 +65,7 @@ agebox.addEventListener("input", () => {
         document.getElementById("ageWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
         x2=true;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
+    disableButton(submitButton);
 });   
 
 
@@ -95,13 +85,7 @@ emailbox.addEventListener("input", ()=> {
         document.getElementById("emailWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
         x3=true;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
+    disableButton(submitButton);
 });
 
 var phbox = document.getElementById("phnumberbox");
@@ -120,13 +104,7 @@ phbox.addEventListener("input", () => {
         document.getElementById("phnumberWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
         x4=true;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
+    disableButton(submitButton);
 });
 
 var password = document.getElementById("passwordbox");
@@ -143,13 +121,7 @@ password.addEventListener("input", () => {
         document.getElementById("cpassWarning").innerHTML = '<i class="far fa-times-circle" style="color: red"></i>';
         x5=false;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
+    disableButton(submitButton);
 });
 
 var cpassword = document.getElementById("cpasswordbox");
@@ -167,12 +139,6 @@ cpassword.addEventListener("input", () => {
         document.getElementById("cpassWarning").innerHTML = '<i class="far fa-times-circle" style="color: red"></i>';
         x5=false;
     }
-    let checkAll = x1 && x2 && x3 && x4 && x5 && x6;
-    if(checkAll){
-        submitButton.disabled = false;
-    }
-    else if(!checkAll){
-        submitButton.disabled = true;
-    }
+    disableButton(submitButton);
 });
 
