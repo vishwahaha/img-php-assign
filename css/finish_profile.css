@@ -1,0 +1,55 @@
+nav {
+  border-bottom: 1px solid rgb(148, 145, 145);
+}
+.nav-avatar {
+  border-radius: 50% !important;
+  width: 50px;
+  height: 50px;
+}
+.card {
+  max-width: 70%;
+  margin: 5rem auto;
+  text-align: center;
+}
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  color: rgb(107, 100, 100);
+  text-align: center;
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #e7e0e0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #e2dcdc;
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

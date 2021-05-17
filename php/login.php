@@ -1,4 +1,7 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: onlogin.php");
@@ -25,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = checkInput($_POST["username"]);
     $password = checkInput($_POST["password"]);
 
-    $query = "SELECT username, password FROM user_data WHERE username = ?";
+    $query = "SELECT username, password, profile_complete FROM user_data WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username_param);
     $username_param = $username;
     if ($stmt->execute()) {
         $stmt->store_result();
         if ($stmt->num_rows == 1) {
-            $stmt->bind_result($username, $hash_pass);
+            $stmt->bind_result($username, $hash_pass, $profile_completed);
             if ($stmt->fetch()) {
                 if (password_verify($password, $hash_pass)) {
                     session_start();
@@ -44,7 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     $_SESSION["loggedin"] = true;
                     $_SESSION["username"] = $username;
-                    header("location: onlogin.php");
+                    if($profile_completed == "yes"){
+                        header("location: chat_list.php");
+                    }
+                    elseif($profile_completed == "no"){
+                    header("location: finish_profile.php");
+                    }
                 } else {
                     $login_err = "Invalid username or password";
                 }

@@ -1,0 +1,29 @@
+nav {
+  border-bottom: 1px solid rgb(148, 145, 145);
+}
+.nav-avatar {
+  border-radius: 50% !important;
+  width: 50px;
+  height: 50px;
+}
+.inner-navbar {
+    max-width: 80%;
+    margin: auto;
+    display: flex !important;
+}
+.nav-right-buttons {
+    display: flex;
+    align-items: baseline;
+}
+.nav-item {
+    margin: auto 2rem;
+}
+h1 {
+    margin: 3rem auto;
+    text-align: center;
+}
+.user-list {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+}
