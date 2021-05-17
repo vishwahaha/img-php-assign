@@ -14,21 +14,41 @@ function disableButton(button) {
 
 var usernamebox = document.getElementById("usernamebox");
 usernamebox.addEventListener("input", ()=> {
+
     let username = new RegExp("^(?=.{3,20}$)(?![.])(?!.*[.]{2})[a-zA-Z0-9._]+(?<![.])$");
     let isMatch = username.test(usernamebox.value);
-    if (usernamebox.value.length == 0){
-        document.getElementById("usernameWarning").innerHTML = '<i class="far fa-circle" style="color: #c4c6ca"></i>';
-        x6=false;
-    }
-    else if(!isMatch){
-        document.getElementById("usernameWarning").innerHTML = '<i class="far fa-times-circle" style="color: red"></i>';
-        x6=false;
-    }
-    else if (isMatch){
-        document.getElementById("usernameWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
-        x6=true;
-    }
-    disableButton(submitButton);
+
+    let isAvailable;
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let errmsg = document.getElementById("username-taken-error");
+                if(this.responseText == "no"){
+                    isAvailable = false;
+                    if(usernamebox.value.length != 0)
+                        errmsg.classList.add("show");
+                }
+                else if(this.responseText == "yes"){
+                    isAvailable = true;
+                        errmsg.classList.remove("show");
+                }
+                if (usernamebox.value.length == 0){
+                    document.getElementById("usernameWarning").innerHTML = '<i class="far fa-circle" style="color: #c4c6ca"></i>';
+                    x6=false;
+                }
+                else if((!isMatch || !isAvailable) && usernamebox.value.length != 0){
+                    document.getElementById("usernameWarning").innerHTML = '<i class="far fa-times-circle" style="color: red"></i>';
+                    x6=false;
+                }
+                else if (isMatch && isAvailable){
+                    document.getElementById("usernameWarning").innerHTML = '<i class="far fa-check-circle" style="color: green"></i>';
+                    x6=true;
+                }
+                disableButton(submitButton);
+            }
+        }
+        xhr.open("GET", "../php/check_username.php?q=" + usernamebox.value, true);
+        xhr.send();
 });
 
 var namebox = document.getElementById("fullnamebox");

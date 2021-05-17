@@ -4,6 +4,12 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: onlogin.php");
     exit;
 }
+elseif(isset($_COOKIE["remember_me"]) && $_COOKIE["remember_me"] != ""){
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $_COOKIE["remember_me"];
+    header("location: onlogin.php");
+    exit;
+}
 require_once "config.php";
 $username = $password = $login_err = "";
 
@@ -30,6 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->fetch()) {
                 if (password_verify($password, $hash_pass)) {
                     session_start();
+                    if($_POST["remember_me"] == "on"){
+                        setcookie("remember_me", $username, time()+30*24*60*60, "/", "", 0);
+                    }
+                    else {
+                        setcookie("remember_me", "", time()-60, "/", 0);
+                    }
                     $_SESSION["loggedin"] = true;
                     $_SESSION["username"] = $username;
                     header("location: onlogin.php");
@@ -50,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>Sign in form</title>
+    <title>Log in form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
@@ -65,9 +77,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Password" id="passwordbox">
             </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" name="remember_me" type="checkbox" id="rememberSwitch">
+                <label class="form-check-label" for="rememberSwitch">Remember me</label>
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg" id="submitButton">Log in</button>
             </div>
+            <p>Do not have an account yet? <a href="../index.html">register here</a></p>
+
             <p class="error-msg">
                 <?php
                 if (!empty($login_err)) {

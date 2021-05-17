@@ -50,3 +50,11 @@ input {
 .fa-circle {
     color: #c4c6ca !important;
 }
+.username-taken {
+    font-size: 13px;
+    color: rgb(235, 76, 76);
+    display: none;
+}
+.show {
+    display: initial !important;
+}
