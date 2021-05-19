@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once "./session_vars.php";
+if ($profile_complete == "yes") {
+    header("location: chat_list.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,11 +19,16 @@ require_once "./session_vars.php";
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="<?php echo $avatar ?>" class="nav-avatar">
-                <?php echo $fullname ?>
-            </a>
+        <div class="container-fluid nav-wrap">
+            <div class="navbar-brand navbar-text" href="#" style="color: black;">
+                <div class="nav-image">
+                    <img src="<?php echo $avatar ?>" class="nav-avatar">
+                </div>
+                <div class="navbar-info">
+                    <?php echo $fullname ?><br>
+                    <div class="nav-username"><?php echo $username ?></div>
+                </div>
+            </div>
             <form method="POST" action="logout.php" class="d-flex">
                 <button name="logout_btn" class="btn btn-outline-secondary" type="submit">Log out</button>
             </form>
@@ -42,7 +50,7 @@ require_once "./session_vars.php";
                         </div>
                     </div>
                 </div>
-                <input id="submitBtn" type="submit" value="Upload image" name="uploadBtn" class="btn btn-primary" >
+                <input id="submitBtn" type="submit" value="Upload image" name="uploadBtn" class="btn btn-primary">
                 <input type="submit" value="Continue without uploading" name="no_avatar" class="btn btn-secondary">
             </form>
         </div>
@@ -62,7 +70,7 @@ require_once "./session_vars.php";
             readURL(this);
             if ($(this).val()) {
                 $("#submitBtn").attr("disabled", false);
-            } 
+            }
         });
     </script>
 

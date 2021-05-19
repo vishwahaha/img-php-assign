@@ -1,9 +1,6 @@
 nav {
   border-bottom: 1px solid rgb(148, 145, 145);
 }
-.nav-wrap {
-  max-width: 80%;
-}
 .nav-avatar {
   border-radius: 50% !important;
   width: 50px;
@@ -18,6 +15,19 @@ nav {
   font-size: 1rem;
   text-align: right;
 }
+.inner-navbar {
+  max-width: 80%;
+  margin: auto;
+  display: flex !important;
+}
+.nav-right-buttons {
+  display: flex;
+  align-items: baseline;
+}
+.nav-item {
+  margin: auto 2rem;
+}
+
 .card {
   max-width: 70%;
   margin: 5rem auto;
@@ -26,7 +36,6 @@ nav {
 .avatar-upload {
   position: relative;
   max-width: 205px;
-  margin: 50px auto;
 }
 .avatar-upload .avatar-edit {
   position: absolute;
@@ -50,14 +59,6 @@ nav {
   cursor: pointer;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
 }
-.fa-upload {
-  position: absolute;
-  top: 9px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
 .avatar-upload .avatar-preview {
   width: 192px;
   height: 192px;
@@ -72,4 +73,51 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.fa-upload {
+  position: absolute;
+  top: 9px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.update-form-body {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form-group {
+  margin: 1rem auto;
+  display: flex;
+}
+input {
+  border-radius: 2rem !important;
+  max-width: 80%;
+}
+.form-check-label {
+  margin-right: 1rem;
+}
+.btn {
+  width: 100%;
+}
+.error-indicator {
+  margin: auto 0.5rem;
+}
+.fa-circle {
+  color: #c4c6ca !important;
+}
+.password-error {
+  font-size: 13px;
+  color: rgb(235, 76, 76);
+}
+.show {
+  display: initial !important;
+}
+#pass-change-form {
+  max-width: 30%;
+  margin: auto;
+}
+#pass-change-form input {
+  margin: auto;
 }

@@ -7,7 +7,7 @@ session_start();
 require_once "./session_vars.php";
  
 $message = ""; 
-
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 if (isset($_POST["uploadBtn"]) && $_POST["uploadBtn"] == "Upload image"){
 
   if (isset($_FILES["user_avatar"]) && $_FILES["user_avatar"]["error"] === UPLOAD_ERR_OK)
@@ -69,5 +69,6 @@ elseif (isset($_POST["no_avatar"]) && $_POST["no_avatar"] == "Continue without u
   else{
     echo "Some error occured. Please try again";
   }
+}
 }
 ?>

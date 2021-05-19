@@ -5,25 +5,50 @@ nav {
   border-radius: 50% !important;
   width: 50px;
   height: 50px;
+  margin: 7px;
+}
+.navbar-brand {
+  display: flex;
+}
+.nav-username {
+  color: rgb(155, 146, 146);
+  font-size: 1rem;
+  text-align: right;
 }
 .inner-navbar {
-    max-width: 80%;
-    margin: auto;
-    display: flex !important;
+  max-width: 80%;
+  margin: auto;
+  display: flex !important;
 }
 .nav-right-buttons {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 .nav-item {
-    margin: auto 2rem;
+  margin: auto 2rem;
 }
 h1 {
-    margin: 3rem auto;
-    text-align: center;
+  margin: 3rem auto;
+  text-align: center;
 }
+/* cards */
 .user-list {
-    max-width: 80%;
-    margin: auto;
-    display: flex;
+  max-width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  flex-basis: 20%;
+  height: fit-content;
+  margin: 30px;
+  border-radius: 10px;
+}
+.card-img {
+  text-align: center;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-bottom: 1.5px solid rgb(230, 221, 221);
 }

@@ -4,13 +4,13 @@
     error_reporting(E_ALL);
 session_start();
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: onlogin.php");
+    header("location: chat_list.php");
     exit;
 }
 elseif(isset($_COOKIE["remember_me"]) && $_COOKIE["remember_me"] != ""){
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $_COOKIE["remember_me"];
-    header("location: onlogin.php");
+    header("location: chat_list.php");
     exit;
 }
 require_once "config.php";
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("location: chat_list.php");
                     }
                     elseif($profile_completed == "no"){
-                    header("location: finish_profile.php");
+                        header("location: finish_profile.php");
                     }
                 } else {
                     $login_err = "Invalid username or password";
@@ -130,38 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 submitButton.disabled = false;
         });
     </script>
-    <!-- <script>
-
-            var logForm = document.getElementById("login");
-            var formData= {
-                email: "",
-                password: ""
-            }
-
-            logForm.addEventListener("change", () => {
-                formData.email = document.getElementById("emailbox").value;
-                formData.password = document.getElementById("passwordbox").value;
-            });
-
-            logForm.addEventListener("submit", () => {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function(){
-                    if(this.readyState == 4 && this.status == 200){
-                        let data = JSON.parse(this.responseText);
-                        console.log(data);
-                        document.getElementById("error-msg").classList.remove("on-error");
-                        document.write("<h1>You have been logged in!</h1>");
-                    }   
-                    if(this.readyState == 4 && this.status !== 200){
-                        document.getElementById("error-msg").classList.add("on-error");
-                    }  
-                }
-                xhr.open("POST", "https://reqres.in/api/login", true);
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xhr.send(JSON.stringify(formData));
-            });
-
-        </script> -->
 </body>
 
 </html>
