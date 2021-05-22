@@ -1,9 +1,12 @@
 <?php
 session_start();
 require_once "session_vars.php";
+if ($_SESSION["loggedin"] != true) {
+    header("location: login.php");
+}
 $all_data = array();
 $get_data = $conn->query("SELECT username, fullname, age, gender, email, avatar FROM user_data");
-while($result = $get_data->fetch_assoc()){
+while ($result = $get_data->fetch_assoc()) {
     $all_data[] = $result;
 }
 ?>
@@ -20,7 +23,7 @@ while($result = $get_data->fetch_assoc()){
 <body>
     <nav class="navbar navbar-light bg-light ml-auto">
         <div class="container-fluid inner-navbar">
-        <div class="navbar-brand navbar-text" href="#" style="color: black;">
+            <div class="navbar-brand navbar-text" href="#" style="color: black;">
                 <div class="nav-image">
                     <img src="<?php echo $avatar ?>" class="nav-avatar">
                 </div>
@@ -46,26 +49,28 @@ while($result = $get_data->fetch_assoc()){
     </nav>
     <h1>All users of this website :</h1>
     <div class="user-list">
-    <?php 
-        foreach($all_data as $val){
-            if( $val["username"] != $username )
-            echo
-            '<div class="card">
+        <?php
+        foreach ($all_data as $val) {
+            if ($val["username"] != $username)
+                echo
+                '<div class="card">
                 <div class="card-img" style="background-image: url(' . $val["avatar"] . ')"></div>
                 <div class="card-body">
-                    <h5 class="card-title">'. $val["fullname"] .'</h5>
+                    <h5 class="card-title">' . $val["fullname"] . '</h5>
                     <p class="card-text">
                     ' . $val["age"] . '<br>
                     ' . $val["email"] . '
                     </p>
                     <div style="text-align: center;">
-                        <a href="#" class="btn btn-primary">Chat</a>
+                        <button onclick="iniChat(\'' . $val["username"] . '\', \'' . $val["fullname"] . '\', \'' . $val["avatar"] . '\')" class="btn btn-primary">Chat</button>
                     </div>
-                </div>
+                </div>  
             </div>';
         }
-    ?>
+        ?>
     </div>
+    <div class="card chat-box" id="chat-box"></div>
+    <script src="../js/chat.js"></script>
 </body>
 
 </html>

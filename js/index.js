@@ -47,7 +47,7 @@ usernamebox.addEventListener("input", ()=> {
                 disableButton(submitButton);
             }
         }
-        xhr.open("GET", "../php/check_username.php?q=" + usernamebox.value, true);
+        xhr.open("GET", "./php/check_username.php?q=" + usernamebox.value, true);
         xhr.send();
 });
 

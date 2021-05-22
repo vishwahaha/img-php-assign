@@ -4,6 +4,9 @@
     error_reporting(E_ALL);
 
 session_start();
+if($_SESSION["loggedin"] != true){
+  header("location: login.php");
+}
 require_once "./session_vars.php";
  
 $message = ""; 

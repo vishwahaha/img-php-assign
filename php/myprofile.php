@@ -4,6 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+if($_SESSION["loggedin"] != true){
+    header("location: login.php");
+}
 require_once "session_vars.php";
 $wrong_pass = "";
 $wrong_pass_2 = "";
@@ -96,7 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>My profile</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/0a964c491f.js" crossorigin="anonymous"></script>
     <!-- Bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -139,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="update-form-body">
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type="file" name="user_avatar" id="imageUpload" accept=".png, .jpg, .jpeg .svg .bmp" />
+                            <input type="file" name="user_avatar" id="imageUpload" accept=".png, .jpg, .jpeg .svg .bmp" onchange="readURL(this)" />
                             <label for="imageUpload"><i class="fas fa-upload"></i></label>
                         </div>
                         <div class="avatar-preview">

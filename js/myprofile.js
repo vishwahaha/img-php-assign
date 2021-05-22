@@ -1,3 +1,17 @@
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.querySelector('#imagePreview').style.backgroundImage = "url(" + e.target.result + ")";
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 var x1, x2, x3, x4;
 x1 = x2 = x3 = x4 = false;
 var submitButton = document.getElementById("updateBtn");
@@ -117,10 +131,10 @@ var changeButton = document.getElementById("changePass");
 
 var newpassword = document.getElementById("newpasswordbox");
 newpassword.addEventListener("input", () => {
-    if (newpassword.value.length == 0){
+    if (newpassword.value.length == 0) {
         y1 = false;
     }
-    else if (newpassword.value.length != 0){
+    else if (newpassword.value.length != 0) {
         y1 = true;
     }
     disablePassButton(changeButton);
@@ -128,10 +142,10 @@ newpassword.addEventListener("input", () => {
 
 var cnewpassword = document.getElementById("cnewpasswordbox");
 cnewpassword.addEventListener("input", () => {
-    if (cnewpassword.value.length == 0){
+    if (cnewpassword.value.length == 0) {
         y2 = false;
     }
-    else if (cnewpassword.value.length != 0){
+    else if (cnewpassword.value.length != 0) {
         y2 = true;
     }
     disablePassButton(changeButton);
@@ -139,15 +153,14 @@ cnewpassword.addEventListener("input", () => {
 
 var oldpassword = document.getElementById("oldpasswordbox");
 oldpassword.addEventListener("input", () => {
-    if(oldpassword.value.length == 0){
+    if (oldpassword.value.length == 0) {
         y3 = false;
     }
-    else if(oldpassword.value.length != 0){
+    else if (oldpassword.value.length != 0) {
         y3 = true;
     }
     disablePassButton(changeButton);
 });
-
 
 window.onload = () => {
     verifyFields();
@@ -155,19 +168,3 @@ window.onload = () => {
     disablePassButton(changeButton);
 }
 
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-}
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $("#imagePreview").css(
-                "background-image",
-                "url(" + e.target.result + ")"
-            );
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
